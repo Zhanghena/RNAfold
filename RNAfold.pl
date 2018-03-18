@@ -18,23 +18,10 @@ my $BEDPath = shift;
 my %pairs;
 my @pair;
 
-
-#ln -s /picb/rnomics3/Zhanghena/project/m5C/03_BSseq/03_merge_12_samples/03_noERCC_notRNA_BCE.bed
-#perl -alne 'print join("\t",$F[0],$F[2],@F[2..5])' 03_noERCC_notRNA_BCE.bed >03_noERCC_notRNA_BCE.avinput
-#annotate_variation.pl --geneanno --dbtype refGene --buildver hg38 --outfile 03_noERCC_notRNA_BCE.annoted 03_noERCC_notRNA_BCE.avinput humandb/
-#cut -f 1,2 03_noERCC_notRNA_BCE.annoted.variant_function |grep -v intergenic|grep -v upstream|grep -v downstream|cut -f 2|perl -alne '$F[0] =~ s/\(.*//; @a=split(/,/,$F[0]); print join("\n",@a) ' |sort|uniq > 03_noERCC_notRNA_BCE.genes
-#grep -f 03_noERCC_notRNA_BCE.genes humandb/hg38_refGene.txt > 03_noERCC_notRNA_BCE.transcripts
-#cut -f 2- 03_noERCC_notRNA_BCE.transcripts | genePredToBed stdin 03_noERCC_notRNA_BCE.transcripts.bed
-#bedtools getfasta -fi /picb/rnomics1/database/Human/hg38/genome/hg38_all.fa -bed 03_noERCC_notRNA_BCE.transcripts.bed -s -split -name >03_noERCC_notRNA_BCE.transcripts.fa
-
-#split -l 26 ../03_noERCC_notRNA_BCE.transcripts.fa -d -a 3 list
-#RNAfold -p --MEA=0.1 -T 75 --maxBPspan= -i 03_noERCC_notRNA_BCE.transcripts.fa > 03_noERCC_notRNA_BCE.RNAfold.out
-
-
-
 #system('bedtools getfasta -fi /picb/rnomics1/database/Human/hg38/genome/hg38_all.fa -bed humandb/hg38_refGene.bed -s -split -name |head >test.fa');
 #system('RNAfold -p --MEA=0.1 -T 75 --maxBPspan=150 -i test.fa > test.out');
 #system('head -n 5 humandb/hg38_refGene.bed > test.bed');
+
 my %BED = readBEDFile($BEDPath);
 foreach my $KEY (keys %BED){
     my ($chr,$chromStart,$chromEnd,$name,$score,$strand,$thickStart,
